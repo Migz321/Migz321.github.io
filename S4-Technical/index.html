@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Japan food</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #272626, #323131);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand {
+      color: #fff !important;
+      font-size: 1.5rem;
+    }
+    .btn-light {
+      background: linear-gradient(90deg, #202020, #1b1b1b);
+      color: #fff;
+      border: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-light:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .dish-card {
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    }
+    .dish-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card-title {
+      color: #57111d;
+      font-weight: bold;
+    }
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .dish-img {
+      transition: filter 0.3s;
+      width: 100%;
+      height: 200px; /* Fixed height for uniformity */
+      object-fit: cover; /* Ensures the image scales properly */
+      display: block;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      text-align: center;
+    }
+    .overlay-text {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    .dish-card:hover .dish-img {
+      filter: blur(3px);
+    }
+    .dish-card:hover .overlay {
+      opacity: 1;
+    }
+    .modal-header {
+      background: linear-gradient(90deg, #121212, #161616);
+      color: #fff;
+    }
+    .modal-content {
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .modal-body {
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    }
+    h1.text-gradient {
+      background: linear-gradient(90deg, #101010, #131213);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #expandedImage {
+      max-width: 600px;
+      max-height: 400px;
+      width: 100%;
+      height: 100%;
+    }
+    footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Japan food</a>
+      <button id="menuButton" class="btn btn-light text-gradient fw-bold ms-auto">Menu</button>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div id="menuChoices" class="container my-5">
+    <h1 class="text-center mb-5 text-3xl font-bold text-gradient">Japan Dishes</h1>
+    <div class="row">
+      <!-- Umorice Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="Omurice">
+          <div class="card-img-container">
+            <img src="/S4-Technical/img/Omurice.jpg" class="card-img-top dish-img" alt="Omurice"/>
+            <div class="overlay">
+              <p class="overlay-text">Omurice</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Omurice</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Burger Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="ramen">
+          <div class="card-img-container">
+            <img src="/S4-Technical/img/Iekeiramen111.jpg" class="card-img-top dish-img" alt="Ramen" />
+            <div class="overlay">
+              <p class="overlay-text">Ramen</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Ramen
+          </div>
+        </div>
+      </div>
+      <!-- Pasta Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="tonkatsu">
+          <div class="card-img-container">
+            <img src="/S4-Technical/img/Tonkatsu.jpg "class="card-img-top dish-img" alt="Tonkatsu" />
+            <div class="overlay">
+              <p class="overlay-text">Tonkatsu</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">Tonkatsu</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Salad Card -->
+      <div class="col-md-3 mb-4">
+        <div class="card dish-card" data-dish="sushi">
+          <div class="card-img-container">
+            <img src="/S4-Technical/img/Sushii.jpg" class="card-img-top dish-img" alt="Sushi" />
+            <div class="overlay">
+              <p class="overlay-text">Shushi</p>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">SUshi</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expanded Dish Content -->
+  <div id="expandedDish" class="container my-5 d-none">
+    <div class="row">
+      <div class="col-md-6">
+        <img id="expandedImage" src="" class="img-fluid rounded" alt="Dish Image">
+      </div>
+      <div class="col-md-6">
+        <h3 id="expandedTitle"></h3>
+        <p id="expandedDescription"></p>
+        <p><strong>Price:</strong> <span id="expandedPrice"></span></p>
+        <p><strong>Type:</strong> <span id="expandedType"></span></p>
+        <p><strong>Cooking Time:</strong> <span id="expandedCookingTime"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-5 py-4 text-center" style="background: linear-gradient(90deg, #1d1d1d, #1b1a1a); color: #181717;">
+    <div class="container">
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const dishDetails = {
+      omurice: {
+        title: "Omurice",
+        description: "Our pizza is made with fresh ingredients, featuring a crispy thin crust, a generous layer of mozzarella, and topped with basil and tomato sauce.",
+        price: "$12.99",
+        foodType: "Italian",
+        cookingTime: "15 minutes",
+        image: "/S4-Technical/img/Omurice.jpg" // Updated image link
+      },
+      burger: {
+        title: "Burger",
+        description: "Enjoy our juicy beef burger grilled to perfection, served with lettuce, tomato, and our special sauce, making it a classic favorite.",
+        price: "$10.99",
+        foodType: "American",
+        cookingTime: "10 minutes",
+        image: "https://www.foodandwine.com/thmb/jldKZBYIoXJWXodRE9ut87K8Mag=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg" // Updated image link
+      },
+      pasta: {
+        title: "Pasta",
+        description: "Savor our authentic Italian pasta cooked al dente, tossed in a rich marinara sauce and sprinkled with parmesan cheese.",
+        price: "$11.99",
+        foodType: "Italian",
+        cookingTime: "12 minutes",
+        image: "https://www.allrecipes.com/thmb/IrY572TXic4UXXVn8EetsarI3S0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-269500-creamy-garlic-pasta-Beauties-4x3-f404628aad2a435a9985b2cf764209b5.jpg" // Updated image link
+      },
+      salad: {
+        title: "Salad",
+        description: "A healthy mix of fresh greens and seasonal vegetables, tossed in a light vinaigrette for a refreshing taste.",
+        price: "$8.99",
+        foodType: "Healthy",
+        cookingTime: "5 minutes",
+        image: "https://cookingwithayeh.com/wp-content/uploads/2023/11/Healthy-Caesar-Salad-Without-Anchovies-SQ-5-500x500.jpg" // Updated image link
+      }
+    };
+
+    const menuChoices = document.getElementById('menuChoices');
+    const expandedDish = document.getElementById('expandedDish');
+    const menuButton = document.getElementById('menuButton');
+    const backToMenu = document.getElementById('backToMenu');
+
+    document.querySelectorAll('.dish-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const dishType = card.getAttribute('data-dish');
+        const details = dishDetails[dishType];
+
+        document.getElementById('expandedImage').src = details.image;
+        document.getElementById('expandedTitle').textContent = details.title;
+        document.getElementById('expandedDescription').textContent = details.description;
+        document.getElementById('expandedPrice').textContent = details.price;
+        document.getElementById('expandedType').textContent = details.foodType;
+        document.getElementById('expandedCookingTime').textContent = details.cookingTime;
+
+        menuChoices.classList.add('d-none');
+        expandedDish.classList.remove('d-none');
+      });
+    });
+
+    menuButton.addEventListener('click', () => {
+      menuChoices.classList.remove('d-none');
+      expandedDish.classList.add('d-none');
+    });
+
+    backToMenu.addEventListener('click', () => {
+      menuChoices.classList.remove('d-none');
+      expandedDish.classList.add('d-none');
+    });
+  </script>
+</body>
+</html>
